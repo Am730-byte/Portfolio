@@ -1,33 +1,32 @@
 // @ts-nocheck
 "use client";
 
-import React, { Suspense, useEffect, useMemo, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Center, Float, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
-const DesktopModel = ({ isMobile }) => {
+const DesktopModel = ({ isMobile, rotation }) => {
   const { scene } = useGLTF("/gaming_desktop_pc.glb");
-  const rigRef = React.useRef();
-
+  const rigRef = useRef();
   const desktop = useMemo(() => scene.clone(), [scene]);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (!rigRef.current) return;
-
-    rigRef.current.rotation.y =
-      -Math.PI / 2 + Math.sin(state.clock.elapsedTime * 0.55) * 0.14;
+    // Smoothly interpolate toward target rotation
+    rigRef.current.rotation.y +=
+      (rotation.current - rigRef.current.rotation.y) * 0.08;
   });
 
   return (
     <group ref={rigRef}>
-      <Float floatIntensity={0.2} rotationIntensity={0} speed={1.4}>
-        <Center position={isMobile ? [0, -0.78, 0] : [-0.45, -1, 0]}>
+      <Float floatIntensity={0.15} rotationIntensity={0} speed={1.2}>
+        <Center position={isMobile ? [0, -0.5, 0] : [0, -0.8, 0]}>
           <primitive
             object={desktop}
             rotation={[0, 0, 0]}
-            scale={isMobile ? 0.34 : 0.38}
+            scale={isMobile ? 0.42 : 0.52}
           />
         </Center>
       </Float>
@@ -37,32 +36,54 @@ const DesktopModel = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const rotation = useRef(-Math.PI / 6);
+  const isDragging = useRef(false);
+  const lastX = useRef(0);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
     setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
+    const handleMediaQueryChange = (e) => setIsMobile(e.matches);
     mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
   }, []);
 
+  const onPointerDown = (e) => {
+    isDragging.current = true;
+    lastX.current = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+  };
+
+  const onPointerMove = (e) => {
+    if (!isDragging.current) return;
+    const clientX = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+    const delta = clientX - lastX.current;
+    rotation.current += delta * 0.008;
+    lastX.current = clientX;
+  };
+
+  const onPointerUp = () => {
+    isDragging.current = false;
+  };
+
   return (
-    <div className='absolute inset-0 h-full w-full'>
+    <div
+      ref={containerRef}
+      className="absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing"
+      onMouseDown={onPointerDown}
+      onMouseMove={onPointerMove}
+      onMouseUp={onPointerUp}
+      onMouseLeave={onPointerUp}
+      onTouchStart={onPointerDown}
+      onTouchMove={onPointerMove}
+      onTouchEnd={onPointerUp}
+    >
       <Canvas
-        camera={{ position: [0, 1.1, 15.8], fov: 23 }}
+        camera={{ position: [0, 0.8, 12], fov: 28 }}
         dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
+        gl={{ antialias: true, alpha: true }}
         shadows
       >
-        <fog attach="fog" args={["#050816", 12, 22]} />
-
         <ambientLight intensity={1} />
         <hemisphereLight color="#ffffff" groundColor="#050816" intensity={0.9} />
         <directionalLight color="#b4ff3a" intensity={2} position={[4, 6, 7]} />
@@ -70,7 +91,7 @@ const ComputersCanvas = () => {
         <pointLight color="#a16cff" intensity={8} distance={15} position={[3, 1, -4]} />
 
         <Suspense fallback={<CanvasLoader />}>
-          <DesktopModel isMobile={isMobile} />
+          <DesktopModel isMobile={isMobile} rotation={rotation} />
         </Suspense>
 
         <Preload all />

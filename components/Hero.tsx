@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto overflow-hidden`}>
       <div
-        className={`absolute inset-x-0 top-[120px] z-10 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        style={{ position: "absolute", left: 0, right: 0, top: "120px", zIndex: 10, width: "100%", maxWidth: "1280px", margin: "0 auto", paddingLeft: "1.5rem", paddingRight: "1.5rem", display: "flex", flexDirection: "row", alignItems: "flex-start", gap: "1.25rem" }}
       >
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
@@ -28,13 +28,13 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className='absolute inset-y-0 right-0 w-full md:w-[70%]'>
+      <div className='absolute inset-0 w-full h-full'>
         <ComputersCanvas />
       </div>
 
       <div className='absolute xs:bottom-10 bottom-32 z-10 w-full flex justify-center items-center'>
         <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
+          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2 '>
             <motion.div
               animate={{
                 y: [0, 24, 0],

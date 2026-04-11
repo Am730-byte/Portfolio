@@ -10,7 +10,7 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const ServiceCard = ({ index, title, icon }) => (
-  <div className='xs:w-[250px] w-full'>
+  <div style={{ width: "250px", flexShrink: 0 }}>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
@@ -34,7 +34,7 @@ const ServiceCard = ({ index, title, icon }) => (
 
 const About = () => {
   return (
-    <>
+    <div style={{ textAlign: "center" }}>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>Overview.</h2>
@@ -42,7 +42,8 @@ const About = () => {
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
+        style={{ margin: "1rem auto 0", maxWidth: "48rem" }}
+        className='text-secondary text-[17px] leading-[30px]'
       >
         I'm a skilled software developer with experience in TypeScript and
         JavaScript, with a growing focus on React, Node.js, and Three.js. I
@@ -50,12 +51,12 @@ const About = () => {
         and interactive experiences that feel polished and memorable.
       </motion.p>
 
-      <div className='mt-20 flex flex-wrap gap-10'>
+      <div style={{ marginTop: "3rem", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem" }}>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

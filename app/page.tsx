@@ -1,8 +1,6 @@
 import {
   About,
   Contact,
-  Experience,
-  Feedbacks,
   Hero,
   Navbar,
   Tech,
@@ -12,19 +10,17 @@ import {
 
 export default function Home() {
   return (
-    <main className="relative z-0 bg-primary">
-      <div className="bg-primary">
+    <main style={{ width: "100%", background: "#050816", position: "relative", zIndex: 0 }}>
+      <div style={{ width: "100%", background: "#050816" }}>
         <Navbar />
         <Hero />
       </div>
 
       <About />
-      <Experience />
       <Tech />
       <Works />
-      <Feedbacks />
 
-      <div className="relative z-0">
+      <div style={{ position: "relative", zIndex: 0 }}>
         <Contact />
         <StarsCanvas />
       </div>
