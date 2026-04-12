@@ -20,7 +20,7 @@ const About = () => {
           viewport={{ once: true }}
         >
           <p className={styles.sectionSubText}>Hello </p>
-          <h2 className={styles.sectionHeadText}>I'm Aayush.</h2>
+          <h2 className={styles.sectionHeadText}>I'm Aayush</h2>
         </motion.div>
 
         <motion.p
@@ -62,7 +62,7 @@ const About = () => {
           behindGlowEnabled={true}
           handle="@aayush.meena2006@gmail.com"
           status="Open to Internships"
-          contactText="Contact"
+          contactText="Connect"
           onContactClick={() => window.location.href = '#contact'}
         />
       </div>

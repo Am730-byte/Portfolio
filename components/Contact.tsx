@@ -7,8 +7,17 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
+import ElectricBorder from "./ElectricBorder";
 
 const Contact = () => {
+  const [copiedText, setCopiedText] = React.useState("");
+
+  const handleCopy = (text: string, name: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedText(name);
+    setTimeout(() => setCopiedText(""), 2000);
+  };
+
   const socialLinks = [
     {
       name: "Email",
@@ -33,8 +42,8 @@ const Contact = () => {
     },
     {
       name: "LinkedIn",
-      value: "linkedin.com/in/aayush-meena",
-      href: "https://linkedin.com/in/aayush-meena",
+      value: "Aayush",
+      href: "https://www.linkedin.com/in/am730/",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -45,8 +54,8 @@ const Contact = () => {
     },
     {
       name: "GitHub",
-      value: "github.com/aayushmeena",
-      href: "https://github.com/aayushmeena",
+      value: "Am730-byte",
+      href: "https://github.com/Am730-byte",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
@@ -55,12 +64,12 @@ const Contact = () => {
       ),
     },
     {
-      name: "Twitter",
-      value: "@aayushmeena",
-      href: "https://twitter.com/aayushmeena",
+      name: "X (Twitter)",
+      value: "@AM730",
+      href: "https://x.com/AAYUSHM42844354",
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
       ),
     },
@@ -68,43 +77,73 @@ const Contact = () => {
 
   return (
     <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
-      <div className='flex-[0.75] bg-black-100 p-8 rounded-2xl'>
-        <p className={styles.sectionSubText}>Let's connect</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+      <div className='flex-[0.75]'>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <p className={styles.sectionSubText}>Let's connect</p>
+          <h3 className={styles.sectionHeadText}>Contact.</h3>
+        </motion.div>
 
-        <div className='mt-12 flex flex-col gap-6'>
-          {socialLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              target={link.name !== "Email" && link.name !== "Phone" ? "_blank" : undefined}
-              rel={link.name !== "Email" && link.name !== "Phone" ? "noopener noreferrer" : undefined}
-              className='group flex items-center gap-4 bg-tertiary py-4 px-6 rounded-lg transition-all duration-300 hover:bg-[#915EFF]/20 hover:border-[#915EFF] border-2 border-transparent'
-            >
-              <div className='text-white group-hover:text-[#915EFF] transition-colors duration-300'>
-                {link.icon}
-              </div>
-              <div className='flex-1'>
-                <p className='text-white font-medium text-sm opacity-70'>{link.name}</p>
-                <p className='text-white font-semibold'>{link.value}</p>
-              </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className='text-white/50 group-hover:text-[#915EFF] group-hover:translate-x-1 transition-all duration-300'
+        <div className='mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6'>
+          {socialLinks.map((link, index) => {
+            const isEmailOrPhone = link.name === "Email" || link.name === "Phone";
+            const Component = isEmailOrPhone ? 'button' : 'a';
+            
+            return (
+              <motion.div
+                key={link.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className='group'
               >
-                <path d="M5 12h14"/>
-                <path d="m12 5 7 7-7 7"/>
-              </svg>
-            </a>
-          ))}
+                <Component
+                  {...(!isEmailOrPhone && {
+                    href: link.href,
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                  })}
+                  onClick={isEmailOrPhone ? () => handleCopy(link.value, link.name) : undefined}
+                  className='relative p-8 rounded-xl transition-all duration-300 hover:scale-105 overflow-hidden block w-full text-left cursor-pointer'
+                  style={{ 
+                    background: 'rgba(0, 0, 0, 0.4)', 
+                    backdropFilter: 'blur(20px)', 
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    height: '180px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  {copiedText === link.name && (
+                    <div className='absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded'>
+                      Copied!
+                    </div>
+                  )}
+                  <div className='flex flex-col items-center text-center gap-4'>
+                    <ElectricBorder borderRadius={9999}>
+                      <div className='w-14 h-14 rounded-full flex items-center justify-center text-white group-hover:text-[#915EFF] transition-colors duration-300' style={{ background: 'rgba(145, 94, 255, 0.1)' }}>
+                        {link.icon}
+                      </div>
+                    </ElectricBorder>
+                    <div className='w-full'>
+                      <p className='text-white/70 font-medium text-sm mb-2'>{link.name}</p>
+                      <p className='text-white font-semibold text-sm wrap-break-word'>{link.value}</p>
+                      {isEmailOrPhone && (
+                        <p className='text-white/50 text-xs mt-1'>Click to copy</p>
+                      )}
+                    </div>
+                  </div>
+                </Component>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 

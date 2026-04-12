@@ -212,38 +212,54 @@ const Works = () => {
 
   return (
     <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText}`}>My work</p>
-        <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
-      </motion.div>
+      <div style={{ position: "relative", zIndex: 10, textAlign: "center", marginBottom: "2rem" }}>
+        
+        <h2 className={`${styles.sectionHeadText}`} style={{ color: "white", opacity: 1 }}>Projects</h2>
+      </div>
 
-      <div className="w-full flex">
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
+      <div className="w-full flex justify-center" style={{ position: "relative", zIndex: 10, marginBottom: "3rem" }}>
+        <p
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
+          style={{ opacity: 1, textAlign: "center" }}
         >
           Following projects showcases my skills and experience through real-world examples of my work. Each project is
           briefly described with links to code repositories and live demos in it. It reflects my ability to solve
           complex problems, work with different technologies, and manage projects effectively.
-        </motion.p>
+        </p>
       </div>
 
       <GlobalSpotlight gridRef={gridRef} />
 
-      <div ref={gridRef} className="mt-20 bento-section">
+      <div ref={gridRef} className="bento-section">
         <div className="flex flex-row gap-7 justify-center flex-wrap">
           {projects.map((project, index) => (
             <div key={`project-${index}`} style={{ width: "calc(33.333% - 20px)", minWidth: "320px", height: "480px" }}>
               <ParticleCard style={{ backgroundColor: "#060010", height: "100%", display: "flex", flexDirection: "column", padding: "20px" }}>
                 <div className="relative w-full h-[230px]">
                   <img src={project.image} alt="project_image" className="w-full h-full object-cover rounded-xl" />
-                  <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-                    <div
-                      onClick={() => window.open(project.source_code_link, "_blank")}
-                      className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-                    >
-                      <img src={github} alt="source code" className="w-1/2 h-1/2 object-contain" />
-                    </div>
+                  <div className="absolute inset-0 flex justify-end m-3 card-img_hover gap-2">
+                    {project.live_link && (
+                      <div
+                        onClick={() => window.open(project.live_link, "_blank")}
+                        className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+                        title="Live Demo"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                          <polyline points="15 3 21 3 21 9"/>
+                          <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                      </div>
+                    )}
+                    {project.source_code_link && (
+                      <div
+                        onClick={() => window.open(project.source_code_link, "_blank")}
+                        className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+                        title="Source Code"
+                      >
+                        <img src={github} alt="source code" className="w-1/2 h-1/2 object-contain" />
+                      </div>
+                    )}
                   </div>
                 </div>
 

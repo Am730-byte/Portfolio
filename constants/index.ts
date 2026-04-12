@@ -15,6 +15,7 @@ import {
   git,
   figma,
   docker,
+  postgresql,
   meta,
   starbucks,
   tesla,
@@ -80,10 +81,7 @@ const technologies = [
     name: "React JS",
     icon: reactjs,
   },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
+ 
   {
     name: "Tailwind CSS",
     icon: tailwind,
@@ -97,8 +95,8 @@ const technologies = [
     icon: mongodb,
   },
   {
-    name: "Three JS",
-    icon: threejs,
+    name: "Postgresql",
+    icon: postgresql,
   },
   {
     name: "git",
@@ -189,7 +187,8 @@ const projects = [
       },
     ],
     image: "/projects/gymapp.png",
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/Am730-byte/Light",
+    live_link: "https://light-eta-henna.vercel.app/",
   },
   {
     name: "2D Metaverse – Real Time Multiplayer",
@@ -210,7 +209,8 @@ const projects = [
       },
     ],
     image: "/projects/metaverse.png",
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/Am730-byte/2D-Metaverse-",
+    live_link: "https://2-d-metaverse-iota.vercel.app/",
   },
   {
     name: "Praxis 2.0 – AI/ML Hackathon Website",
@@ -231,7 +231,8 @@ const projects = [
       },
     ],
     image: "/projects/praxis.png",
-    source_code_link: "https://github.com/",
+    source_code_link: null,
+    live_link: "https://praxis-25.vercel.app/",
   },
 ];
 

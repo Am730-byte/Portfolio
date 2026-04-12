@@ -20,6 +20,7 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import postgresql from "./tech/Postgresql_elephant.svg.png";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -52,6 +53,7 @@ const reduxSrc = assetSrc(redux);
 const tailwindSrc = assetSrc(tailwind);
 const typescriptSrc = assetSrc(typescript);
 const threejsSrc = assetSrc(threejs);
+const postgresqlSrc = assetSrc(postgresql);
 const metaSrc = assetSrc(meta);
 const shopifySrc = assetSrc(shopify);
 const starbucksSrc = assetSrc(starbucks);
@@ -82,6 +84,7 @@ export {
   tailwindSrc as tailwind,
   typescriptSrc as typescript,
   threejsSrc as threejs,
+  postgresqlSrc as postgresql,
   metaSrc as meta,
   shopifySrc as shopify,
   starbucksSrc as starbucks,
