@@ -127,11 +127,16 @@ const Contact = () => {
                     </div>
                   )}
                   <div className='flex flex-col items-center text-center gap-4'>
-                    <ElectricBorder borderRadius={9999}>
-                      <div className='w-14 h-14 rounded-full flex items-center justify-center text-white group-hover:text-[#915EFF] transition-colors duration-300' style={{ background: 'rgba(145, 94, 255, 0.1)' }}>
-                        {link.icon}
-                      </div>
-                    </ElectricBorder>
+                    <div className="hidden sm:block">
+                      <ElectricBorder borderRadius={9999}>
+                        <div className='w-14 h-14 rounded-full flex items-center justify-center text-white group-hover:text-[#915EFF] transition-colors duration-300' style={{ background: 'rgba(145, 94, 255, 0.1)' }}>
+                          {link.icon}
+                        </div>
+                      </ElectricBorder>
+                    </div>
+                    <div className="sm:hidden w-14 h-14 rounded-full flex items-center justify-center text-white group-hover:text-[#915EFF] transition-colors duration-300" style={{ background: 'rgba(145, 94, 255, 0.1)' }}>
+                      {link.icon}
+                    </div>
                     <div className='w-full'>
                       <p className='text-white/70 font-medium text-sm mb-2'>{link.name}</p>
                       <p className='text-white font-semibold text-sm wrap-break-word'>{link.value}</p>
@@ -147,7 +152,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
+      <div className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px] hidden sm:block'>
         <EarthCanvas />
       </div>
     </div>

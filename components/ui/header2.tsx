@@ -1,14 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import { getDeviceCapabilities } from "../../lib/performance";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#projects", label: "Projects" },
-  { href: "#work", label: "Experience" },
-  { href: "#contact", label: "Contact" },
+  { href: "home", label: "Home" },
+  { href: "projects", label: "Projects" },
+  { href: "work", label: "Experience" },
+  { href: "contact", label: "Contact" },
 ];
 
 const Header2 = () => {
@@ -16,6 +15,7 @@ const Header2 = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [scrollBlur, setScrollBlur] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
   const [deviceCapabilities, setDeviceCapabilities] = useState<{
     shouldReduceEffects: boolean | 'moderate'
@@ -145,7 +145,7 @@ const Header2 = () => {
           borderRadius: '0.5rem',
         }}
         className="
-          flex items-center justify-center relative overflow-hidden
+          flex items-center justify-center relative
           bg-black/35
           border-b border-white/15
           shadow-[0_8px_32px_rgba(0,0,0,0.2),0_1px_2px_rgba(255,255,255,0.1)_inset]
@@ -183,9 +183,17 @@ const Header2 = () => {
 
         <div className="hidden md:flex items-center relative z-10" style={{ gap: '3rem' }}>
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
-              href={link.href}
+              href={`#${link.href}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById(link.href);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                  window.history.pushState(null, '', `#${link.href}`);
+                }
+              }}
               className="
                 group relative text-white font-medium rounded-full text-2xl
                 transition-all duration-300 overflow-hidden
@@ -199,10 +207,49 @@ const Header2 = () => {
               style={{ padding: '1rem 2.5rem' }}
             >
               <span className="relative z-10 transition-colors duration-300 group-hover:text-black">{link.label}</span>
-            </Link>
+            </a>
           ))}
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden relative z-10 text-white p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {mobileMenuOpen ? (
+              <path d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            )}
+          </svg>
+        </button>
       </nav>
+
+      {/* Mobile Menu - Outside nav */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-4 right-4 mt-2 bg-black/95 backdrop-blur-lg border border-white/20 rounded-lg p-4 shadow-2xl z-50">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={`#${link.href}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById(link.href);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                  window.history.pushState(null, '', `#${link.href}`);
+                }
+                setMobileMenuOpen(false);
+              }}
+              className="block text-white font-medium text-lg py-3 px-4 hover:bg-white/10 rounded transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 };

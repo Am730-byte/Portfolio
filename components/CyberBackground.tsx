@@ -2,8 +2,22 @@
 
 import Antigravity from "./Antigravity";
 import Aurora from "./Aurora";
+import { useEffect, useState } from "react";
 
 export default function CyberBackground({ children }: { children: React.ReactNode }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div style={{ position: "relative", width: "100%", background: "rgb(15, 15, 15)" }}>
       {/* Aurora layer - furthest back */}
@@ -16,23 +30,25 @@ export default function CyberBackground({ children }: { children: React.ReactNod
         />
       </div>
       
-      {/* Antigravity particles - middle layer */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none" }}>
-        <Antigravity
-          count={1500}
-          color="#EDDA07"
-          particleSize={0.8}
-          magnetRadius={5}
-          ringRadius={5}
-          waveSpeed={5}
-          waveAmplitude={1}
-          lerpSpeed={0.1}
-          autoAnimate={false}
-          pulseSpeed={3}
-          particleShape="capsule"
-          fieldStrength={20}
-        />
-      </div>
+      {/* Antigravity particles - middle layer - hidden on mobile */}
+      {!isMobile && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none" }}>
+          <Antigravity
+            count={1500}
+            color="#EDDA07"
+            particleSize={0.8}
+            magnetRadius={5}
+            ringRadius={5}
+            waveSpeed={5}
+            waveAmplitude={1}
+            lerpSpeed={0.1}
+            autoAnimate={false}
+            pulseSpeed={3}
+            particleShape="capsule"
+            fieldStrength={20}
+          />
+        </div>
+      )}
       
       {/* Content sits above with transparent background so particles show through */}
       <div style={{ position: "relative", zIndex: 2, isolation: "isolate" }}>

@@ -265,11 +265,17 @@ const Works = () => {
 
                 <div className="mt-4 flex-1 flex flex-col">
                   <h3 className="text-white font-bold text-[20px]">{project.name}</h3>
-                  <p className="mt-2 text-secondary text-[13px] leading-normal flex-1">{project.description}</p>
+                  <p className="mt-2 text-secondary text-[13px] leading-normal">{project.description}</p>
+                  
+                  {project.impact && (
+                    <p className="mt-2 text-[#915EFF] text-[13px] font-semibold leading-relaxed">
+                       {project.impact}
+                    </p>
+                  )}
 
                   <div className="mt-4 flex flex-wrap gap-2">
                     {project.tags.map((tag: any) => (
-                      <p key={`${project.name}-${tag.name}`} className={`text-[13px] ${tag.color}`}>
+                      <p key={`${project.name}-${tag.name}`} className={`text-[15px] ${tag.color}`}>
                         #{tag.name}
                       </p>
                     ))}
