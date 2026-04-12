@@ -5,59 +5,69 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { fadeIn, textVariant } from "../utils/motion";
-
-const ServiceCard = ({ index, title, icon }) => (
-  <div style={{ width: "250px", flexShrink: 0 }}>
-    <motion.div
-      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
-    >
-      <div
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
-      >
-        <img
-          src={icon}
-          alt='web-development'
-          className='w-16 h-16 object-contain'
-        />
-
-        <h3 className='text-white text-[20px] font-bold text-center'>
-          {title}
-        </h3>
-      </div>
-    </motion.div>
-  </div>
-);
+import ProfileCard from "./ProfileCard";
 
 const About = () => {
   return (
-    <div style={{ textAlign: "center" }}>
-      <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
-      </motion.div>
+    <div style={{ display: "flex", flexDirection: "row", gap: "3rem", alignItems: "center", flexWrap: "wrap", minHeight: "100vh" }}>
+      {/* Left: text */}
+      <div style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <p className={styles.sectionSubText}>Hello </p>
+          <h2 className={styles.sectionHeadText}>I'm Aayush.</h2>
+        </motion.div>
 
-      <motion.p
-        variants={fadeIn("", "", 0.1, 1)}
-        style={{ margin: "1rem auto 0", maxWidth: "48rem" }}
-        className='text-secondary text-[17px] leading-[30px]'
-      >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, with a growing focus on React, Node.js, and Three.js. I
-        enjoy building projects that combine strong UI, solid backend thinking,
-        and interactive experiences that feel polished and memorable.
-      </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          style={{ marginTop: "1rem", color: "#aaa6c3", fontSize: "17px", lineHeight: "1.8" }}
+        >
+          Backend focused developer with hands-on experience building scalable REST APIs, 
+          authentication systems, and real-time applications using Node.js, PostgreSQL, and Prisma. 
+          Strong understanding of system design, data flow, and API architecture, with ability to 
+          build and deploy production-ready applications. Currently pursuing B.Tech in Computer Science 
+          at G.B. Pant DSEU, actively participating in competitive programming and tech communities.
+        </motion.p>
 
-      <div style={{ marginTop: "3rem", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem" }}>
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
+        {/* Download CV Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          style={{ marginTop: "3rem" }}
+        >
+          <a href="/resume/resume.pdf" download="Aayush_Resume.pdf">
+            <button 
+              className="px-12 py-4 border-2 border-white uppercase bg-white text-black transition duration-200 text-base font-bold shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] hover:shadow-[1px_1px_rgba(145,94,255),2px_2px_rgba(145,94,255),3px_3px_rgba(145,94,255),4px_4px_rgba(145,94,255),5px_5px_0px_0px_rgba(145,94,255)] hover:border-[#915EFF] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none flex items-center justify-center"
+            >
+              Download CV
+            </button>
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Right: ProfileCard */}
+      <div style={{ flex: "0 0 auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <ProfileCard
+          avatarUrl="/images/Portfolio1.PNG"
+          behindGlowEnabled={true}
+          handle="@aayush.meena2006@gmail.com"
+          status="Open to Internships"
+          contactText="Contact"
+          onContactClick={() => window.location.href = '#contact'}
+        />
       </div>
     </div>
   );
 };
 
-export default SectionWrapper(About, "about");
+export default SectionWrapper(About, "home");

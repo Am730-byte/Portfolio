@@ -1,29 +1,22 @@
-import {
-  About,
-  Contact,
-  Hero,
-  Navbar,
-  Tech,
-  Works,
-  StarsCanvas,
-} from "../components";
+import About from "../components/About";
+import Tech from "../components/Tech";
+import Works from "../components/Works";
+import Experience from "../components/Experience";
+import Contact from "../components/Contact";
+import CyberBackground from "../components/CyberBackground";
+import Header2 from "../components/ui/header2";
 
 export default function Home() {
   return (
-    <main style={{ width: "100%", background: "#050816", position: "relative", zIndex: 0 }}>
-      <div style={{ width: "100%", background: "#050816" }}>
-        <Navbar />
-        <Hero />
-      </div>
-
-      <About />
-      <Tech />
-      <Works />
-
-      <div style={{ position: "relative", zIndex: 0 }}>
+    <CyberBackground>
+      <div style={{ position: "relative", zIndex: 1, width: "100%" }}>
+        <Header2 />
+        <About />
+        <Tech />
+        <Works />
+        <Experience />
         <Contact />
-        <StarsCanvas />
       </div>
-    </main>
+    </CyberBackground>
   );
 }

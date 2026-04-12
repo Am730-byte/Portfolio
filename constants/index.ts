@@ -116,55 +116,28 @@ const technologies = [
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Core Member",
+    company_name: "COPs (Competitive Programming Society)",
+    icon: "/experience/COPs new.png",
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "2024 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Regularly participate in programming contests such as Codeforces, AtCoder and CodeChef improving algorithmic thinking and problem-solving speed.",
+      "Contributed to organizing BitCode, the campus hackathon, coordinating technical challenges and participant engagement.",
+      "Collaborate with team members to promote competitive programming culture on campus.",
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
+    title: "Core Member",
+    company_name: "GDGC (Google Developer Groups on Campus)",
+    icon: "/experience/gdg_logo.svg.svg",
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "2024 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
-    iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Contribute to the creation of technical content for event promotion, collaborating with design and marketing teams.",
+      "Develop web assets for society events, including websites and promotional designs.",
+      "Ensure brand consistency and clarity across all digital touchpoints.",
+      "Support technical workshops and community building initiatives.",
     ],
   },
 ];
@@ -198,66 +171,66 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Workout Tracking Backend System",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Full REST API for workout tracking with sessions, exercises, and set logging. Built with PostgreSQL, Prisma, JWT authentication, and Zod validation. Deployed on Railway with optimized relational queries.",
     tags: [
       {
-        name: "react",
+        name: "node.js",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "postgresql",
         color: "green-text-gradient",
+      },
+      {
+        name: "prisma",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: "/projects/gymapp.png",
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "2D Metaverse – Real Time Multiplayer",
+    description:
+      "Real-time multi-user virtual workspace with WebSockets for synchronized player movement. Integrated WebRTC voice communication with STUN/TURN fallback and reconnect logic for stable sessions.",
+    tags: [
+      {
+        name: "websockets",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "webrtc",
+        color: "green-text-gradient",
+      },
+      {
+        name: "node.js",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: "/projects/metaverse.png",
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "Praxis 2.0 – AI/ML Hackathon Website",
+    description:
+      "Responsive event landing page built with Next.js and Tailwind CSS. Implemented performance-aware UI rendering based on device capability for optimal user experience.",
+    tags: [
+      {
+        name: "next.js",
+        color: "blue-text-gradient",
       },
       {
         name: "tailwind",
-        color: "pink-text-gradient",
+        color: "green-text-gradient",
       },
-    ],
-    image: carrent,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Job IT",
-    description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
-    tags: [
       {
         name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "restapi",
-        color: "green-text-gradient",
-      },
-      {
-        name: "scss",
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Trip Guide",
-    description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-    tags: [
-      {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "supabase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "css",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: tripguide,
+    image: "/projects/praxis.png",
     source_code_link: "https://github.com/",
   },
 ];
