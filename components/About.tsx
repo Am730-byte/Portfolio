@@ -82,7 +82,7 @@ const About = () => {
       {/* Right: ProfileCard */}
       <div style={{ flex: "0 0 auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <ProfileCard
-          avatarUrl="/images/Portfolio1.PNG"
+          avatarUrl="/images/Portfolio1.png"
           behindGlowEnabled={true}
           handle="aayush.meena2006@gmail.com"
           status="Open to Internships"
