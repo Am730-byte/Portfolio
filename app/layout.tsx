@@ -7,7 +7,7 @@ const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Aayush ",
-  description: "Interactive Three.js portfolio built with Next.js.",
+  description: "Aayush's Portfolio",
 };
 
 export default function RootLayout({
