@@ -69,7 +69,7 @@ const About = () => {
           </button>
 
           {/* Tertiary Button - Download CV */}
-          <a href="/resume/resume.pdf" download="Aayush_Resume.pdf">
+          <a href="/resume/Aayush_Resume.pdf" download="Aayush_Resume.pdf">
             <button 
               className="px-8 py-3 border-2 border-white uppercase bg-white text-black transition duration-200 text-sm font-bold shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] hover:shadow-[1px_1px_rgba(145,94,255),2px_2px_rgba(145,94,255),3px_3px_rgba(145,94,255),4px_4px_rgba(145,94,255),5px_5px_0px_0px_rgba(145,94,255)] hover:border-[#915EFF] hover:scale-105 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none cursor-pointer"
             >
